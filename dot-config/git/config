@@ -1,0 +1,28 @@
+[core]
+	editor = vim
+[alias]
+	st = status
+	lg = log --decorate --graph --oneline
+	slog = log --patch -S
+[user]
+	email = kkleine@redhat.com
+	name = Konrad Kleine
+
+
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[init]
+	defaultBranch = main
+[log]
+    abbrevCommit=false
+[diff]
+	wsErrorHighlight = old,new,context

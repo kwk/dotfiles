@@ -1,0 +1,6 @@
+--target=~/
+--dotfiles
+--ignore=.stowrc
+--ignore=DS_Store
+--ignore=.gitignore
+--ignore=Makefile

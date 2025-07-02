@@ -1,0 +1,110 @@
+[general]
+email = Konrad Kleine <kkleine@redhat.com>
+width = 200
+
+## [jira]
+## type = jira
+## #url = https://issues.redhat.com/
+## url = https://redhat.atlassian.net/
+## login =kkleine 
+## auth_type = token
+## token_file = ~/.did/token-jira
+## project = LLVM
+## worklog_enable = on
+
+[jira]
+type = jira
+url = https://redhat.atlassian.net/
+auth_type = basic
+auth_username = kkleine@redhat.com
+transition_status = Closed
+token_file = ~/.did/token-jira
+
+[github]
+type = github
+url = https://api.github.com/
+token_file = ~/.did/token-github
+login = kwk 
+
+# [gitlab-internal]
+# type = gitlab
+# url = https://gitlab.cee.redhat.com/
+# token_file = ~/.did/token-gitlab-internal
+# login = kkleine
+# ssl_verify = true
+# 
+[gitlab]
+type = gitlab
+url = https://gitlab.com/
+token_file = ~/.did/token-gitlab
+login = kkleine1
+ssl_verify = true
+
+[pagure]
+type = pagure
+url = https://pagure.io/api/0/
+login = kkleine
+token_file = ~/.did/token-pagure
+
+[srcfedoraproject]
+type = pagure
+url = https://src.fedoraproject.org/api/0/
+login = kkleine
+token_file = ~/.did/token-srcfedoraproject
+
+# [confluence]
+# type = confluence
+# url = https://docs.engineering.redhat.com
+# auth_url = https://docs.engineering.redhat.com/rest/auth/latest/session
+# auth_type = basic
+# auth_username = kkleine
+# auth_password_file = ~/.did/confluence_password
+
+[misc-git-repos]
+type = git
+#llvm-big-merge = ~/src/llvm-rpms/llvm-big-merge
+llvm-snapshots = ~/src/llvm-snapshots
+
+[bodhi]
+type = bodhi
+url = https://bodhi.fedoraproject.org/
+login = kkleine
+
+[koji-centos]
+type = koji
+url = https://kojihub.stream.rdu2.redhat.com/kojihub
+login = kkleine
+name = koji-centos
+
+[brew]
+type = koji
+url = https://brewhub.engineering.redhat.com/brewhub
+login = kkleine
+name = brew
+
+#[errata]
+#type = errata
+# https://did.readthedocs.io/en/latest/plugins.html#module-did.plugins.bugzilla
+
+[bz]
+type = bugzilla
+prefix = BZ
+url = https://bugzilla.redhat.com/xmlrpc.cgi
+grades = 0
+resolutions = all
+## See for internal plugins: https://wiki.test.redhat.com/BaseOs/Projects/did#Docs
+
+#[bz_internal]
+#type = bugzilla_redhat
+#prefix = BZ
+#url = https://bugzilla.redhat.com/xmlrpc.cgi
+#grades = 0
+#resolutions = all
+
+[google]
+type = google
+client_id_file = ~/.did/google_client_id
+client_secret_file = ~/.did/google_client_secret
+apps = calendar,tasks
+storage = ~/.did/google-api-credentials.json
+skip = ["Lunch break", "Status deadline"]

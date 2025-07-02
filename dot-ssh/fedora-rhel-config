@@ -1,0 +1,101 @@
+# Personal Config
+
+Include ~/.ssh/personal_config
+
+# Testing Config
+
+Include ~/.ssh/testing_config
+
+Compression                yes
+ServerAliveInterval        30
+ServerAliveCountMax        120
+
+Host us-east-1
+    Hostname                   bastion-aws-us-east-1.corp.redhat.com
+    ProxyJump                  none
+
+Host *.us-east-1.aws.redhat.com
+    ProxyJump                  us-east-1
+
+Host *.a4.vary.redhat.com
+    ProxyJump                  us-east-1
+
+Host us-west-2
+    Hostname                   bastion-aws-us-west-2.corp.redhat.com
+    ProxyJump                  none
+
+Host *.us-west-2.redhat.com
+    ProxyJump                  us-west-2
+
+Host *.us-west-2.aws.redhat.com
+    ProxyJump                  us-west-2
+
+Host eu-central-1
+    Hostname                   bastion-aws-eu-central-1.corp.redhat.com
+    ProxyJump                  none
+
+Host *.eu-central-1.aws.redhat.com
+    ProxyJump                  eu-central-1
+
+Host ap-southeast-1
+    Hostname                   bastion-aws-ap-southeast-1.corp.redhat.com
+    ProxyJump                  none
+
+Host *.ap-southeast-1.aws.redhat.com
+    ProxyJump                  ap-southeast-1
+
+Host rdu2
+    Hostname                   bastion-rdu2.corp.redhat.com
+    ProxyJump                  none
+
+Host *.rdu2.redhat.com
+    ProxyJump                  rdu2
+
+Host *.rdu2.dc.redhat.com
+    ProxyJump                  rdu2
+
+Host ams2
+    Hostname                   bastion-ams2.corp.redhat.com
+    ProxyJump                  none
+
+Host *.ams2.redhat.com
+    ProxyJump                  ams2
+
+Host *.ams2.dc.redhat.com
+    ProxyJump                  ams2
+
+Host pnq2
+    Hostname                   bastion-pnq2.corp.redhat.com
+    ProxyJump                  none
+
+Host *.pnq2.redhat.com
+    ProxyJump                  pnq2
+
+Host *.pnq2.dc.redhat.com
+    ProxyJump                  pnq2
+
+
+Host sin2
+    Hostname                   bastion-sin2.corp.redhat.com
+    ProxyJump                  none
+
+Host *.sin2.redhat.com
+    ProxyJump                  sin2
+
+Host *.sin2.dc.redhat.com
+    ProxyJump                  sin2
+
+Host iad2
+    Hostname                   bastion-iad2.corp.redhat.com
+    ProxyJump                  none
+
+Host *.iad2.dc.redhat.com
+    ProxyJump                  iad2
+
+Host *.redhat.com
+    GSSAPIAuthentication       yes
+    ForwardAgent               no
+    ForwardX11                 no
+    ForwardX11Trusted          no
+    GSSAPIDelegateCredentials  no
+    HashKnownHosts             no

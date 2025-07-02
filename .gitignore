@@ -1,0 +1,6 @@
+tmux-client*log
+.gdb_history
+*.swp
+dot-config/tmux/plugins
+dot-config/vim/colors
+dot-config/vim/catppuccin

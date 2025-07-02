@@ -1,0 +1,58 @@
+Include ~/.ssh/fedora-rhel-config
+
+# GitHub and GitLab
+Host github.com gitlab.com
+  User git
+  # First option:
+  IdentitiesOnly yes
+  IdentityFile ~/.ssh/id_gpg.pub
+  # Second option:
+  # IdentitiesOnly no
+  # IdentityAgent /run/user/1000/gnupg/S.gpg-agent.ssh
+
+# ITUP.Scale RDU3 host
+Host kkleine-llvm-rdu3
+  HostName  10.5.226.75
+  User      fedora
+  ProxyJump rdu2
+
+# Old PSI host
+Host kkleine-llvm-psi
+  HostName 10.0.103.0
+  User fedora
+
+# Toronto Servers
+Host torsion
+   HostName torsion.usersys.redhat.com
+   User kkleine
+Host tor
+   HostName torsion.usersys.redhat.com
+   User kkleine
+Host tofu
+   HostName tofu.yyz.redhat.com
+   User kkleine
+Host tofan
+   HostName tofan.yyz.redhat.com
+   User kkleine
+
+
+Host pkgs.devel.redhat.com
+   ProxyJump iad2
+   GSSAPIAuthentication yes
+
+Host pkgs-stage.devel.redhat.com
+   ProxyJump iad2
+   GSSAPIAuthentication yes
+
+
+# # Former AWS server that uses a jump host to be accessed
+# Host shell-server
+#   HostName shell-el7.hosts.prod.upshift.rdu2.redhat.com
+#   User kkleine
+#   Port 22
+# 
+# Host llvm-standalone-builder
+#   HostName ec2-54-197-7-45.compute-1.amazonaws.com
+#   User ec2-user
+#   IdentityFile ~/.ssh/aws-kkleine-key-pair2.pem
+#   ProxyJump shell-server

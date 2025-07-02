@@ -1,0 +1,70 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+# User specific environment
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
+then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+export PATH
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# User specific aliases and functions
+if [ -d ~/.bashrc.d ]; then
+	for rc in ~/.bashrc.d/*; do
+		if [ -f "$rc" ]; then
+			. "$rc"
+		fi
+	done
+fi
+
+unset rc
+
+# Show minimal prompt with only working directory 
+# and rely on tmux status bar for more like hostname
+PS1='\n\w > '
+
+if [[ -e ~/.extra-bashrc ]]; then
+	source ~/.extra-bashrc
+fi
+
+
+function find_failed_llvm_tests_in_log() {
+  grep -Pzo "(?s)\*{20} TEST .*?\n--\n.*?\n--\n" $1
+}
+
+function find_failed_llvm_tests_in_log_as_markdown() {
+  find_failed_llvm_tests_in_log $1 | sed -E 's/(\*{20} TEST)/````````\n````````\n\1/' | sed -zE 's/\0/\n/' | tr '\0' '\n' 
+  echo -e '\n````````\n'
+}
+
+
+PATH="$PATH:~/scripts:~/.cargo/bin:~/go/bin:"
+export EDITOR=vim
+
+alias git_last_commit_as_branch='git log --pretty=format:'%s' -n1 | tr " " "_"'
+
+alias testing-farm-redhat="TESTING_FARM_API_TOKEN=${TESTING_FARM_API_TOKEN_REDHAT_RANCH} testing-farm"
+alias testing-farm-public="TESTING_FARM_API_TOKEN=${TESTING_FARM_API_TOKEN_PUBLIC_RANCH} testing-farm"
+
+export CLAUDE_CODE_USE_VERTEX=1
+export CLOUD_ML_REGION=us-east5
+export ANTHROPIC_VERTEX_PROJECT_ID=itpc-gcp-core-pe-eng-claude
+
+export PATH=$PATH:$HOME/.npm-global/bin
+
+# See https://gitlab.cee.redhat.com/sst_pt_llvm_rust_go/docs/-/blob/main/itup.scale-rdu3/itup.scale.rdu3.md?ref_type=heads#auto-oc-login
+alias oc-login='API_URL=https://paas-metadata-service-api.apps.mpp-w2-phub.e8ue.p1.openshiftapps.com mpp cluster login -t prod-scale-spoke1-dc-rdu3 && oc project platform-tools--runtime-int'
+
+## See also https://github.com/drduh/yubikey-guide#replace-agents
+unset SSH_AGENT_PID
+export GPG_TTY=$(tty)
+export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+gpgconf --launch gpg-agent
+gpg-connect-agent updatestartuptty /bye > /dev/null

@@ -1,0 +1,38 @@
+theme = "onedark"
+
+[editor]
+end-of-line-diagnostics = "hint"
+line-number = "relative"
+mouse = true
+
+[editor.inline-diagnostics]
+cursor-line = "warning" # show warnings and errors on the cursorline inline
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+# See https://docs.helix-editor.com/editor.html#editorwhitespace-section
+[editor.whitespace.render]
+space = "all"
+ab = "all"
+nbsp = "none"
+nnbsp = "none"
+newline = "none"
+
+[editor.whitespace.characters]
+space = "·"
+nbsp = "⍽"
+nnbsp = "␣"
+tab = "→"
+newline = "⏎"
+tabpad = "·" # Tabs will look like "→···" (depending on tab width)
+
+[editor.indent-guides]
+render = true
+character = "╎" # Some characters that work well: "▏", "┆", "┊", "⸽"
+skip-levels = 1
+
+[editor.file-picker]
+hidden = false

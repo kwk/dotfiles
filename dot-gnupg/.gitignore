@@ -1,0 +1,6 @@
+.#*
+random_seed
+pubring.kbx*
+trustdb.gpg
+private-keys*
+reader*.status
