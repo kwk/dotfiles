@@ -15,6 +15,11 @@ Host pkgs.fedoraproject.org
   IdentitiesOnly yes
   IdentityFile ~/.ssh/id_gpg.pub
 
+Host gitlab.cee.redhat.com
+  User git
+  IdentitiesOnly yes
+  IdentityFile ~/.ssh/id_gpg.pub
+
 # ITUP.Scale RDU3 host
 Host kkleine-llvm-rdu3
   HostName  10.5.226.75
