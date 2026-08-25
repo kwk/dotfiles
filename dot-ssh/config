@@ -10,6 +10,11 @@ Host github.com gitlab.com
   # IdentitiesOnly no
   # IdentityAgent /run/user/1000/gnupg/S.gpg-agent.ssh
 
+Host pkgs.fedoraproject.org
+  User kkleine
+  IdentitiesOnly yes
+  IdentityFile ~/.ssh/id_gpg.pub
+
 # ITUP.Scale RDU3 host
 Host kkleine-llvm-rdu3
   HostName  10.5.226.75

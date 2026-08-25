@@ -1,5 +1,5 @@
 os=$(shell cat /etc/os-release | grep ID=fedora -q && echo fedora || echo unknown)
-fedora_packages=git gdb stow vim-enhanced tmux bat tree python3-pyfzf gnupg2
+fedora_packages=git gdb stow vim-enhanced tmux bat tree python3-pyfzf gnupg2 yubikey-manager
 
 START = @echo -e "\n>> BEGIN $@"
 END = @echo -e "<< END $@\n"
