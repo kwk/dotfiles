@@ -1,0 +1,1 @@
+add-auto-load-safe-path ~/src/dotfiles/gdb/dot-config/dot-gdbinit

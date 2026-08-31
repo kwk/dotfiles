@@ -1,0 +1,365 @@
+{
+    "workbench.iconTheme": "vscode-icons",
+    "redhat.telemetry.enabled": false,
+
+    "testing.displayedCoveragePercent": "minimum",
+    "testing.showCoverageInExplorer": true,
+    "coverage-gutters.showGutterCoverage": true,
+    "coverage-gutters.showLineCoverage":true,
+    "coverage-gutters.coverageFileNames":[
+        "lcov.info",
+        "cov.xml",
+        "coverage.xml",
+        "cobertura.xml",
+        "jacoco.xml",
+        "coverage.cobertura.xml"
+    ],
+    "coverage-gutters.coverageBaseDir": "/home/kkleine/src/llvm-snapshots",
+    "coverage-gutters.manualCoverageFilePaths": ["/home/kkleine/src/llvm-snapshots/coverage.xml"],
+    // Python stuff
+    // ---
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    },
+    "mypy-type-checker.args": [
+        "--strict",
+        "--ignore-missing-imports"
+    ],
+    // ---
+    "files.associations": {
+        "*.fmf": "yaml",
+        "*.spec.inc": "rpmspec"
+    },
+    "editor.renderControlCharacters": false,
+
+    "zenMode.hideLineNumbers": false,
+
+
+    // Shrink space next to editor by removing line numbers and the
+    // ability to set breakpoints as well as removing the folding. 
+    "editor.lineNumbers": "on",
+    "editor.fontFamily": "Mona",
+    "editor.glyphMargin": true,
+    "editor.folding": false,
+    "editor.showFoldingControls": "always",
+    "editor.foldingHighlight": false,
+    "editor.defaultFoldingRangeProvider": "maptz.regionfolder",
+    "maptz.regionfolder": {
+        // "[rpmspec]": {                                      //Language selector
+        //     "foldEnd": "#endregion",                    //Text inserted at the end of the fold
+        //     "foldEndRegex": "#endregion",          //Regex used to find fold end text.
+        //     "foldStart": "#region [NAME]",              //Text inserted at the start of the fold.
+        //                                                 //Use the `[NAME]` placeholder to indicate
+        //                                                 //where the cursor should be placed after
+        //                                              //insertion
+        //     "foldStartRegex": "#region[\\s]*(.*)",  ////Regex used to find fold start text.
+        //     "disableFolding": false //Turn off #region folding for this language
+        // },
+        "[python]": {                                      //Language selector
+            "foldEnd": "# endregion",                    //Text inserted at the end of the fold
+            "foldEndRegex": "# endregion",          //Regex used to find fold end text.
+            "foldStart": "# region [NAME]",              //Text inserted at the start of the fold.
+                                                    //Use the `[NAME]` placeholder to indicate
+                                                    //where the cursor should be placed after
+                                                    //insertion
+            "foldStartRegex": "# region[\\s]*(.*)",  ////Regex used to find fold start text.
+            "disableFolding": false //Turn off #region folding for this language
+        }
+    },
+    
+    "breadcrumbs.enabled": true,
+    "vsicons.dontShowNewVersionMessage": true,
+    "zenMode.silentNotifications": true,
+    "editor.inlineSuggest.enabled": true,
+    "gitlens.defaultTimeFormat": null,
+    "gitlens.defaultDateShortFormat": null,
+    "editor.renderWhitespace": "selection",
+    
+    
+    //--------------------------------------------------------------------------
+    //              Formatting
+    //--------------------------------------------------------------------------
+    "clang-format.language.cpp.style": "LLVM",
+    "clang-format.language.c.style": "LLVM",
+    "editor.defaultFormatter": "xaver.clang-format",
+  
+    "zenMode.hideStatusBar": false,
+    "editor.guides.indentation": true,
+    "python.diagnostics.sourceMapsEnabled": true,
+    // "python.linting.flake8Enabled": true,
+    // "python.linting.flake8Args": [
+    //     "--per-file-ignores=\"__init__.py:F401\""
+    // ],
+    "githubPullRequests.pullBranch": "never",
+    "go.useLanguageServer": true,
+    "[go]":{
+        "editor.insertSpaces": false,
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+        },
+        "editor.suggest.snippetsPreventQuickSuggestions": false,
+    },
+    "go.testFlags": [
+        "-v"
+    ],
+    "plantuml.previewAutoUpdate": true,
+    "[cpp]": {
+        "editor.defaultFormatter": "xaver.clang-format"
+    },
+    // "workbench.colorTheme": "Default Dark+",
+    "git.openRepositoryInParentFolders": "always",
+    "notebook.lineNumbers": "on",
+    "security.workspace.trust.untrustedFiles": "open",
+    "editor.mouseWheelZoom": true,
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "editor.foldingStrategy": "indentation",
+    "explicitFolding.rules": [
+
+    ],
+    "zenMode.showTabs": "single",
+    "zenMode.centerLayout": false,
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    "[xml]": {
+        "editor.defaultFormatter": "redhat.vscode-xml"
+    },
+    "codecov.coverage.enabled": false,
+    "telemetry.telemetryLevel": "off",
+    "gitlens.autolinks": [
+        {
+            "prefix": "RHEL-",
+            "url": "https://issues.redhat.com/browse/RHEL-<num>"
+        }
+    ],
+    "granite.localModelSize": "small",
+    "notebook.defaultFormatter": "ms-python.black-formatter",
+    "python.analysis.typeEvaluation.strictParameterNoneValue": false,
+    "python.analysis.typeEvaluation.analyzeUnannotatedFunctions": false,
+    "workbench.startupEditor": "none",
+    "editor.unicodeHighlight.nonBasicASCII": false,
+    "editor.minimap.enabled": false,
+    "docker.extension.enableComposeLanguageServer": false,
+    "[dockercompose]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2,
+        "editor.autoIndent": "advanced",
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    },
+    "[github-actions-workflow]": {
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    },
+    "yaml.schemas": {
+        "file:///home/kkleine/.vscode/extensions/atlassian.atlascode-4.0.7/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+    },
+    "atlascode.bitbucket.enabled": false,
+    "atlascode.jira.statusbar.enabled": true,
+    "claudeCode.environmentVariables": [
+        {
+            "name": "CLAUDE_CODE_USE_VERTEX",
+            "value": "1"
+        },
+        {
+            "name": "CLOUD_ML_REGION",
+            "value": "us-east5"
+        },
+        {
+            "name": "ANTHROPIC_VERTEX_PROJECT_ID",
+            "value": "itpc-gcp-core-pe-eng-claude"
+        }
+    ],
+    "claudeCode.selectedModel": "default",
+    "claudeCode.useTerminal": true,
+    "claudeCode.preferredLocation": "sidebar",
+    //--------------------------------------------------------------------------
+    //              CMake
+    //--------------------------------------------------------------------------
+    "cmake.configureOnOpen": true,
+    "cmake.options.statusBarVisibility": "visible",
+    "cmake.generator": "Ninja",
+    "cmake.sourceDirectory": "${workspaceFolder}/llvm/",
+    "cmake.buildDirectory": "${workspaceFolder}/build-${buildType}",
+    "cmake.useCMakePresets": "never",
+    "cmake.buildEnvironment": {
+        //"LIT_FILTER": "Flang :: Lower/location.f90"
+        "LIT_FILTER": "flang/test/driver/gcc-triple.f90"
+    },
+    "cmake.configureSettings": {
+        // Manually added:
+        
+        "LLVM_ENABLE_IDE": "ON",
+
+        "CMAKE_CXX_COMPILER": "clang++",
+        "CMAKE_CXX_COMPILER_LAUNCHER": "ccache",    
+        "CMAKE_C_COMPILER": "clang",
+        "CMAKE_C_COMPILER_LAUNCHER": "ccache",
+        "LLVM_BUILD_SHARED_LIBS": "ON",
+        "LLVM_ENABLE_ASSERTIONS": "ON",
+        "LLVM_ENABLE_LLD": "ON",
+        "LLVM_OPTIMIZED_TABLEGEN": "ON",
+        "LLVM_ENABLE_PROJECTS": ["clang", "mlir"],
+        "CLANG_ENABLE_CIR": "ON",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+
+        // "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+        
+        // // Taken from an RPM build:
+
+        // "CMAKE_C_FLAGS_RELEASE":"-DNDEBUG",
+        // "CMAKE_CXX_FLAGS_RELEASE":"-DNDEBUG",
+        // "CMAKE_Fortran_FLAGS_RELEASE":"-DNDEBUG",
+        // "CMAKE_VERBOSE_MAKEFILE": "ON",
+        // "CMAKE_INSTALL_DO_STRIP": "OFF",
+        // // "CMAKE_INSTALL_PREFIX": "/usr",
+        // "CMAKE_INSTALL_FULL_SBINDIR": "/usr/bin",
+        // "CMAKE_INSTALL_SBINDIR": "bin",
+        // "INCLUDE_INSTALL_DIR": "/usr/include",
+        // "LIB_INSTALL_DIR": "/usr/lib64",
+        // "SYSCONF_INSTALL_DIR": "/etc",
+        // "SHARE_INSTALL_PREFIX": "/usr/share",
+        // "LIB_SUFFIX":"64",
+        // // "BUILD_SHARED_LIBS": "ON",
+        // "CMAKE_BUILD_TYPE":"RelWithDebInfo",
+        // "LLVM_ENABLE_RTTI":"ON",
+        // "LLVM_USE_PERF":"ON",
+        // "LLVM_TARGETS_TO_BUILD":"all",
+        // "BUILD_SHARED_LIBS":"OFF",
+        // "LLVM_BUILD_LLVM_DYLIB":"ON",
+        // "LLVM_LINK_LLVM_DYLIB":"ON",
+        // "CLANG_LINK_CLANG_DYLIB":"ON",
+        // "LLVM_ENABLE_FFI": "ON",
+        // "LLVM_ENABLE_EH":"OFF",
+        // "CLANG_BUILD_EXAMPLES": "OFF",
+        // "CLANG_CONFIG_FILE_SYSTEM_DIR":"/etc/clang/",
+        // "CLANG_DEFAULT_PIE_ON_LINUX":"OFF",
+        // "CLANG_DEFAULT_UNWINDLIB":"libgcc",
+        // "CLANG_ENABLE_ARCMT": "ON",
+        // "CLANG_ENABLE_STATIC_ANALYZER": "ON",
+        // "CLANG_INCLUDE_DOCS": "OFF",
+        // "CLANG_INCLUDE_TESTS": "ON",
+        // "CLANG_PLUGIN_SUPPORT": "ON ",
+        // //"CLANG_REPOSITORY_STRING":"Fedora 22.0.0~pre20251030.g21bcd00e54416b-7.fc44",
+
+        // // I had to make this absolute in order to find it
+        // // "LLVM_EXTERNAL_CLANG_TOOLS_EXTRA_SOURCE_DIR":"../clang-tools-extra",
+        // "LLVM_EXTERNAL_CLANG_TOOLS_EXTRA_SOURCE_DIR":"${workspaceFolder}/clang-tools-extra",
+        // "COMPILER_RT_INCLUDE_TESTS": "OFF",
+        // "LLVM_BUILD_EXTERNAL_COMPILER_RT": "ON",
+        // "LLVM_ENABLE_DOXYGEN": "OFF",
+        // "LLVM_ENABLE_SPHINX": "ON",
+        // "LLVM_BUILD_DOCS": "ON",
+        // "SPHINX_EXECUTABLE":"/usr/bin/sphinx-build-3",
+        // "SPHINX_OUTPUT_HTML": "OFF",
+        // "SPHINX_OUTPUT_MAN": "ON",
+        // "SPHINX_WARNINGS_AS_ERRORS":"OFF",
+        // "LLDB_ENFORCE_STRICT_TEST_REQUIREMENTS": "ON",
+        // "CMAKE_POSITION_INDEPENDENT_CODE":"ON",
+        // "LIBCXX_INCLUDE_BENCHMARKS":"OFF",
+        // "LIBCXX_STATICALLY_LINK_ABI_IN_STATIC_LIBRARY":"ON",
+        // "LIBCXX_ENABLE_ABI_LINKER_SCRIPT":"ON",
+        // "LIBCXXABI_USE_LLVM_UNWINDER":"OFF",
+        // "LIBUNWIND_INSTALL_INCLUDE_DIR":"/usr/include/llvm-libunwind",
+        // "LIBCXX_INSTALL_LIBRARY_DIR":"/usr/lib64",
+        // "LIBCXXABI_INSTALL_LIBRARY_DIR":"/usr/lib64",
+        // "LIBUNWIND_INSTALL_LIBRARY_DIR":"/usr/lib64",
+        // "LIBCXX_INSTALL_INCLUDE_TARGET_DIR":"/usr/include/c++/v1",
+        // "LIBCXX_INSTALL_INCLUDE_DIR":"/usr/include/c++/v1",
+        // "LIBCXX_INSTALL_MODULES_DIR":"/usr/share/libc++/v1",
+        // "LIBCXXABI_INSTALL_INCLUDE_DIR":"/usr/include/c++/v1",
+        // "LLVM_APPEND_VC_REV": "OFF",
+        // "LLVM_BUILD_EXAMPLES": "OFF",
+        // "LLVM_BUILD_RUNTIME": "ON",
+        // "LLVM_BUILD_TOOLS": "ON",
+        // "LLVM_BUILD_UTILS": "ON",
+        // "LLVM_DEFAULT_TARGET_TRIPLE":"x86_64-redhat-linux-gnu",
+        // "LLVM_ENABLE_LIBCXX": "OFF",
+        // "LLVM_ENABLE_PER_TARGET_RUNTIME_DIR":"ON",
+        // // "LLVM_ENABLE_PROJECTS":["clang","clang-tools-extra","lld","lldb","mlir","bolt","polly","flang"],
+        // "LLVM_ENABLE_PROJECTS":["clang","clang-tools-extra"],],
+        // // "LLVM_ENABLE_RUNTIMES":["compiler-rt","openmp","flang-rt","libcxx","libcxxabi","libunwind","offload"],
+        // "LLVM_ENABLE_RUNTIMES":["compiler-rt"],
+        // "LLVM_ENABLE_ZLIB": "FORCE_ON",
+        // "LLVM_ENABLE_ZSTD": "FORCE_ON",
+        // "LLVM_EXPERIMENTAL_TARGETS_TO_BUILD":"AVR",
+        // "LLVM_INCLUDE_BENCHMARKS":"OFF",
+        // "LLVM_INCLUDE_EXAMPLES": "OFF",
+        // "LLVM_INCLUDE_TOOLS": "ON",
+        // "LLVM_INCLUDE_UTILS": "ON",
+        // "LLVM_INSTALL_TOOLCHAIN_ONLY": "OFF",
+        // "LLVM_INSTALL_UTILS": "ON",
+        // "LLVM_PARALLEL_LINK_JOBS":"1",
+        // "LLVM_TOOLS_INSTALL_DIR": "bin",
+        // "LLVM_UNREACHABLE_OPTIMIZE": "OFF",
+        // "LLVM_UTILS_INSTALL_DIR": "bin",
+        // "MLIR_INCLUDE_DOCS": "ON",
+        // "MLIR_INCLUDE_TESTS": "ON ",
+        // "MLIR_INCLUDE_INTEGRATION_TESTS": "OFF ",
+        // "MLIR_INSTALL_AGGREGATE_OBJECTS":"OFF",
+        // "MLIR_BUILD_MLIR_C_DYLIB":"ON",
+        // "MLIR_ENABLE_BINDINGS_PYTHON": "ON ",
+        // "OPENMP_INSTALL_LIBDIR":"lib64",
+        // "LIBOMP_INSTALL_ALIASES":"OFF",
+        // "LLVM_RUNTIME_TARGETS": ["default","amdgcn-amd-amdhsa","nvptx64-nvidia-cuda"],
+        // "RUNTIMES_nvptx64-nvidia-cuda_LLVM_ENABLE_RUNTIMES":["openmp"],
+        // "RUNTIMES_amdgcn-amd-amdhsa_LLVM_ENABLE_RUNTIMES":["openmp"],
+        // "RUNTIMES_amdgcn-amd-amdhsa_CMAKE_CXX_FLAGS":"",
+        // "RUNTIMES_nvptx64-nvidia-cuda_CMAKE_CXX_FLAGS":"",
+        // "RUNTIMES_nvptx64-nvidia-cuda_LLVM_LIBDIR_SUFFIX":"64",
+        // "LLVM_POLLY_LINK_INTO_TOOLS":"OFF",
+        // "FLANG_INCLUDE_DOCS": "ON",
+        // "FLANG_RT_ENABLE_SHARED": "ON",
+        // "FLANG_RT_ENABLE_STATIC": "ON",
+        // "LLVM_BUILD_TESTS": "ON",
+        // "LLVM_INCLUDE_TESTS": "ON",
+        // "LLVM_INSTALL_GTEST": "ON",
+        // "LLVM_LIT_ARGS":"-vv",
+        // "LLVM_UNITTEST_LINK_FLAGS":"-fno-lto",
+        // "CMAKE_INSTALL_PREFIX":"/usr/lib64/llvm22",
+        // "ENABLE_LINKER_BUILD_ID": "ON",
+        // "Python3_EXECUTABLE":"/usr/bin/python3",
+        // "OFFLOAD_INSTALL_LIBDIR":"lib64",
+        // "CMAKE_SKIP_INSTALL_RPATH": "ON",
+        // "PPC_LINUX_DEFAULT_IEEELONGDOUBLE":"ON",
+        // "LLVM_LIBDIR_SUFFIX":"64",
+        // "LLVM_BINUTILS_INCDIR":"/usr/include",
+        // //"LLVM_VERSION_SUFFIX":"pre20251030.g21bcd00e54416b",
+        // "LLVM_VERSION_SUFFIX":"custombuild",
+        // // Dropping -Wl,-z,cet-report=error
+        // "CMAKE_SHARED_LINKER_FLAGS":"-Wl,-z,relro -Wl,--as-needed  -Wl,-z,pack-relative-relocs -Wl,-z,now --config=/usr/lib/rpm/redhat/redhat-hardened-clang-ld.cfg   -Wl,--build-id=sha1    -Wl,--build-id=sha1",
+        // //"LLVM_PROFDATA_FILE":"/builddir/build/BUILD/llvm-22.0.0_pre20251030.g21bcd00e54416b-build/result.profdata",
+        // "LLVM_VP_COUNTERS_PER_SITE":"8",
+        // // "LLVM_ENABLE_LTO": "Thin",
+        // // "LLVM_ENABLE_FATLTO":"ON",
+        // "LLVM_USE_LINKER":"lld",
+    },
+    "codechecker.backend.compilationDatabasePath": "${workspaceFolder}/build-RelWithDebInfo/compile_commands.json",
+    "codechecker.executor.enableNotifications": true,
+    // llvm-vs-code-extensions.vscode-clangd
+    "clangd.arguments": [
+        "--background-index",
+        "--compile-commands-dir=${workspaceFolder}/build-${buildType}"
+    ] ,
+    // see https://llvm.github.io/clangir/GettingStarted/contrib.html
+    "C_Cpp.intelliSenseEngine": "disabled",
+
+    "editor.cursorBlinking": "expand",
+    "editor.cursorSmoothCaretAnimation": "on",
+    "editor.wordWrap": "on",
+    "editor.bracketPairColorization.enabled": true,
+    "workbench.editorAssociations": {
+        "*.copilotmd": "vscode.markdown.preview.editor",
+        "{git,gitlens,chat-editing-snapshot-text-model,copilot,git-graph,git-graph-3}:/**/*.qrc": "default",
+        "*.qrc": "qt-core.qrcEditor"
+    },
+    "github.copilot.enable": {
+        "*": false,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false
+    },
+    "chat.mcp.gallery.enabled": true,
+    "workbench.experimental.modernUI": true,
+}
