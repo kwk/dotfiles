@@ -1,0 +1,8 @@
+# See https://redhat.atlassian.net/wiki/x/aIGxEQ
+[rcm-tools-fedora-rpms]
+name=RCM Tools for Fedora $releasever (RPMs)
+baseurl=https://download.devel.redhat.com/rel-eng/RCMTOOLS/latest-RCMTOOLS-2-F-$releasever/compose/Everything/$basearch/os/
+enabled=1
+gpgcheck=1
+gpgkey=https://download.devel.redhat.com/rel-eng/RCMTOOLS/RPM-GPG-KEY-rcminternal
+skip_if_unavailable=1
