@@ -1,3 +1,6 @@
+# See https://gitlab.cee.redhat.com/it-ansible/supplemental/ssh/-/raw/main/fedora-rhel-config?ref_type
+# See also https://gitlab.cee.redhat.com/sst_pt_llvm_rust_go/docs/-/blob/main/itup.scale-rdu3/itup.scale.rdu3.md?ref_type=heads#login-with-ssh
+
 # Personal Config
 
 Include ~/.ssh/personal_config
