@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# This should fix the following error:
+# 
+#  $ gpg --card-status
+#  gpg: OpenPGP card not available: Permission denied
+
+gpgconf --kill all
