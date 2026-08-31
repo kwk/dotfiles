@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# See https://gitlab.cee.redhat.com/sst_pt_llvm_rust_go/docs/-/blob/main/itup.scale-rdu3/itup.scale.rdu3.md?ref_type=heads#auto-oc-login
+
+API_URL=https://paas-metadata-service-api.apps.mpp-w2-phub.e8ue.p1.openshiftapps.com mpp cluster login -t prod-scale-spoke1-dc-rdu3 && oc project platform-tools--runtime-int'

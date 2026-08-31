@@ -59,9 +59,6 @@ export ANTHROPIC_VERTEX_PROJECT_ID=itpc-gcp-core-pe-eng-claude
 
 export PATH=$PATH:$HOME/.npm-global/bin
 
-# See https://gitlab.cee.redhat.com/sst_pt_llvm_rust_go/docs/-/blob/main/itup.scale-rdu3/itup.scale.rdu3.md?ref_type=heads#auto-oc-login
-alias oc-login='API_URL=https://paas-metadata-service-api.apps.mpp-w2-phub.e8ue.p1.openshiftapps.com mpp cluster login -t prod-scale-spoke1-dc-rdu3 && oc project platform-tools--runtime-int'
-
 ## See also https://github.com/drduh/yubikey-guide#replace-agents
 unset SSH_AGENT_PID
 export GPG_TTY=$(tty)
