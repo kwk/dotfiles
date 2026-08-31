@@ -63,7 +63,7 @@ token_file = ~/.did/token-srcfedoraproject
 [misc-git-repos]
 type = git
 #llvm-big-merge = ~/src/llvm-rpms/llvm-big-merge
-llvm-snapshots = ~/src/llvm-snapshots
+#llvm-snapshots = ~/src/llvm-snapshots
 
 [bodhi]
 type = bodhi
