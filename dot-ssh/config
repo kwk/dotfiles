@@ -21,15 +21,10 @@ Host gitlab.cee.redhat.com
   IdentityFile ~/.ssh/id_gpg.pub
 
 # ITUP.Scale RDU3 host
-Host kkleine-llvm-rdu3
+Host kkleine-llvm
   HostName  10.5.226.75
   User      fedora
   ProxyJump rdu2
-
-# Old PSI host
-Host kkleine-llvm-psi
-  HostName 10.0.103.0
-  User fedora
 
 # Toronto Servers
 Host torsion
