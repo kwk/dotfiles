@@ -6,3 +6,6 @@
 #  gpg: OpenPGP card not available: Permission denied
 
 gpgconf --kill all
+
+# Running this helps to get things going again.
+gpg --card-status
