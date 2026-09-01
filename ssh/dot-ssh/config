@@ -2,23 +2,23 @@ Include ~/.ssh/fedora-rhel-config
 
 # GitHub and GitLab
 Host github.com gitlab.com
-  User git
+  User                  git
   # First option:
-  IdentitiesOnly yes
-  IdentityFile ~/.ssh/id_gpg.pub
+  IdentitiesOnly        yes
+  IdentityFile          ~/.ssh/id_gpg.pub
   # Second option:
-  # IdentitiesOnly no
-  # IdentityAgent /run/user/1000/gnupg/S.gpg-agent.ssh
+  # IdentitiesOnly      no
+  # IdentityAgent       /run/user/1000/gnupg/S.gpg-agent.ssh
 
 Host pkgs.fedoraproject.org
-  User kkleine
-  IdentitiesOnly yes
-  IdentityFile ~/.ssh/id_gpg.pub
+  User                  kkleine
+  IdentitiesOnly        yes
+  IdentityFile          ~/.ssh/id_gpg.pub
 
 Host gitlab.cee.redhat.com
-  User git
-  IdentitiesOnly yes
-  IdentityFile ~/.ssh/id_gpg.pub
+  User                  git
+  IdentitiesOnly        yes
+  IdentityFile          ~/.ssh/id_gpg.pub
 
 # ITUP.Scale RDU3 host
 Host kkleine-llvm
@@ -29,36 +29,36 @@ Host kkleine-llvm
 
 # Toronto Servers
 Host torsion
-   HostName torsion.usersys.redhat.com
-   User kkleine
+   HostName             torsion.usersys.redhat.com
+   User                 kkleine
 Host tor
-   HostName torsion.usersys.redhat.com
-   User kkleine
+   HostName             torsion.usersys.redhat.com
+   User                 kkleine
 Host tofu
-   HostName tofu.yyz.redhat.com
-   User kkleine
+   HostName             tofu.yyz.redhat.com
+   User                 kkleine
 Host tofan
-   HostName tofan.yyz.redhat.com
-   User kkleine
+   HostName             tofan.yyz.redhat.com
+   User                 kkleine
 
 
-Host pkgs.devel.redhat.com
-   ProxyJump iad2
+Host                    pkgs.devel.redhat.com
+   ProxyJump            iad2
    GSSAPIAuthentication yes
 
 Host pkgs-stage.devel.redhat.com
-   ProxyJump iad2
+   ProxyJump            iad2
    GSSAPIAuthentication yes
 
 
 # # Former AWS server that uses a jump host to be accessed
 # Host shell-server
-#   HostName shell-el7.hosts.prod.upshift.rdu2.redhat.com
-#   User kkleine
-#   Port 22
+#   HostName            shell-el7.hosts.prod.upshift.rdu2.redhat.com
+#   User                kkleine
+#   Port                22
 # 
 # Host llvm-standalone-builder
-#   HostName ec2-54-197-7-45.compute-1.amazonaws.com
-#   User ec2-user
-#   IdentityFile ~/.ssh/aws-kkleine-key-pair2.pem
-#   ProxyJump shell-server
+#   HostName            ec2-54-197-7-45.compute-1.amazonaws.com
+#   User                ec2-user
+#   IdentityFile        ~/.ssh/aws-kkleine-key-pair2.pem
+#   ProxyJump           shell-server
