@@ -2,7 +2,7 @@
 os=$(shell cat /etc/os-release | grep ID=fedora -q && echo fedora || echo unknown)
 
 # Packages that need to be installed on a Fedora system
-fedora_packages=git gdb stow vim-enhanced tmux bat tree python3-pyfzf gnupg2 yubikey-manager python3-pip yubikey-personalization-gui fedpkg pipx krb5-config gcc python3-devel centpkg rhpkg python3-psycopg2
+fedora_packages=git gdb stow vim-enhanced tmux bat tree python3-pyfzf gnupg2 yubikey-manager python3-pip yubikey-personalization-gui fedpkg pipx krb5-config gcc python3-devel centpkg rhpkg python3-psycopg2 inotify-tools
 
 # Increase verbosity, from 0 to 5
 STOW_VERBOSE_LEVEL := 2
