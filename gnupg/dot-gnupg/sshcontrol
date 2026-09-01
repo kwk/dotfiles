@@ -9,3 +9,7 @@
 # caching TTL in seconds, and another optional field for arbitrary
 # flags.   Prepend the keygrip with an '!' mark to disable it.
 
+# Ed25519 key added on: 2026-09-01 10:59:55
+# Fingerprints:  MD5:00:d8:7b:ca:d2:c7:23:13:07:26:8a:38:19:53:24:d7
+#                SHA256:m8DL+bE4cTBbwQiKzahXK8OtTmnbAClipxDdOoZ475Y
+324175A4C7B2110C4AED2D939D540B9956B0D6CB 0

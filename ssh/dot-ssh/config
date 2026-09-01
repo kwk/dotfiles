@@ -22,9 +22,10 @@ Host gitlab.cee.redhat.com
 
 # ITUP.Scale RDU3 host
 Host kkleine-llvm
-  HostName  10.5.226.75
-  User      fedora
-  ProxyJump rdu2
+  HostName              10.5.226.75
+  User                  fedora
+  ProxyJump             rdu2
+  IdentityFile          ~/.ssh/id_ed25519_kkleine-llvm-rdu3.pub
 
 # Toronto Servers
 Host torsion
