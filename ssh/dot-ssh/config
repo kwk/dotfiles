@@ -1,17 +1,14 @@
-# Bypass broken bastion instances (10.4.224.x have mismatched keytabs).
-# Connect directly to a working instance; GSSAPIServerIdentity ensures the
-# Kerberos principal still matches the pool name.
-Host rdu2
-  HostName              b5.bast-001.prod.rdu2.dc.redhat.com
-  HostKeyAlias          bastion-rdu2.corp.redhat.com
-  GSSAPIServerIdentity  bastion-rdu2.corp.redhat.com
-
-# Restrict bastion pubkey to one key to avoid agent flooding.
-Host rdu2 iad2 ams2 pnq2 sin2 us-east-1 us-west-2 eu-central-1 ap-southeast-1
-  IdentitiesOnly        yes
-  IdentityFile          ~/.ssh/id_ed25519.pub
-
 Include ~/.ssh/fedora-rhel-config
+
+# Red Hat bastions use GSSAPI, not pubkey — prevent agent key flooding
+# This prevents from such error:
+#
+#    Received disconnect from 10.4.224.4 port 22:2: Too many authentication failures                                     
+#    Disconnected from 10.4.224.4 port 22
+#    Connection closed by UNKNOWN port 65535
+#
+Host rdu2 iad2 ams2 pnq2 sin2 us-east-1 us-west-2 eu-central-1 ap-southeast-1
+  PubkeyAuthentication  no
 
 # GitHub and GitLab
 Host github.com gitlab.com
