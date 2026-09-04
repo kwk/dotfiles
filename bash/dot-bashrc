@@ -55,6 +55,9 @@ export PATH=$PATH:$HOME/.npm-global/bin
 # Yubikey config
 [ -f "~/.config/gnupg-yubikey/env.sh" ] && . "~/.config/gnupg-yubikey/env.sh"
 
+# Bitwarden Session key
+[ -f "~/.bw.sh" ] && . "~/.bw.sh"
+
 # Testing farm config
 [ -f "~/.config/testing-farm/env.sh" ] && . "~/.config/testing-farm/env.sh"
 
