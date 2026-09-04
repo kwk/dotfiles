@@ -1,10 +1,15 @@
 news.version=3.4.2
-
-# To use the default location of the XDG directories,
-# move this configuration file from ~/.taskrc to ~/.config/task/taskrc and update location config as follows:
-
 data.location=~/.local/share/task
 hooks.location=~/.config/task/hooks
+
+# ISO 8601 weeks (YYYY-Www) logged by hooks/on-modify.iso-week on start/stop/done.
+uda.weeks.type=string
+uda.weeks.label=Weeks
+report.worked.description=Tasks worked in one or more ISO weeks
+report.worked.columns=id,status.short,project,start.active,description,weeks
+report.worked.labels=ID,Status,Project,Active,Description,Weeks
+report.worked.filter=status.not:deleted weeks.any:
+report.worked.sort=weeks+,id+
 
 # Color theme (uncomment one to use)
 #include /usr/share/task/light-16.theme

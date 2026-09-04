@@ -1,0 +1,78 @@
+#!/usr/bin/env python3
+"""Taskwarrior hook: record the current ISO 8601 week on start, stop, and done.
+
+on-add and on-modify share this script (on-add.iso-week is a symlink). Weeks
+are stored as a comma-separated string UDA, e.g. 2026-W34,2026-W35.
+"""
+
+from __future__ import annotations
+
+import json
+import sys
+from datetime import date
+
+
+def iso_week() -> str:
+    return date.today().strftime("%G-W%V")
+
+
+def week_list(task: dict) -> list[str]:
+    raw = task.get("weeks") or ""
+    return [week for week in raw.split(",") if week]
+
+
+def append_week(task: dict, week: str) -> bool:
+    weeks = week_list(task)
+    if week in weeks:
+        return False
+    weeks.append(week)
+    task["weeks"] = ",".join(weeks)
+    return True
+
+
+def should_stamp(original: dict, modified: dict) -> bool:
+    orig_start = original.get("start")
+    mod_start = modified.get("start")
+    orig_status = original.get("status", "pending")
+    mod_status = modified.get("status", "pending")
+
+    if mod_status == "deleted":
+        return False
+    if not orig_start and mod_start:
+        return True
+    if orig_start and not mod_start and mod_status == "pending":
+        return True
+    if orig_status != "completed" and mod_status == "completed":
+        return True
+    return False
+
+
+def read_tasks() -> tuple[dict, dict]:
+    lines = [line for line in sys.stdin if line.strip()]
+    if len(lines) == 1:
+        return {}, json.loads(lines[0])
+    if len(lines) == 2:
+        return json.loads(lines[0]), json.loads(lines[1])
+    raise ValueError("expected 1 or 2 JSON task lines")
+
+
+def main() -> int:
+    try:
+        original, modified = read_tasks()
+    except (json.JSONDecodeError, ValueError) as exc:
+        print(f"iso-week hook: {exc}")
+        return 1
+
+    week = iso_week()
+    added = False
+    if should_stamp(original, modified):
+        added = append_week(modified, week)
+
+    print(json.dumps(modified, separators=(",", ":")))
+    if added:
+        print(f"Logged ISO week {week}")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
