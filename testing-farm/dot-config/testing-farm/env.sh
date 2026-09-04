@@ -1,2 +1,2 @@
-alias testing-farm-redhat="TESTING_FARM_API_TOKEN=$(bw get password TESTING_FARM_API_TOKEN_REDHAT_RANCH) testing-farm"
-alias testing-farm-public="TESTING_FARM_API_TOKEN=$(bw get password TESTING_FARM_API_TOKEN_PUBLIC_RANCH) testing-farm"
+alias testing-farm-redhat="TESTING_FARM_API_TOKEN=$(bw get password token-testing-farm-red-hat-ranch) testing-farm"
+alias testing-farm-public="TESTING_FARM_API_TOKEN=$(bw get password token-testing-farm-public-ranch) testing-farm"
