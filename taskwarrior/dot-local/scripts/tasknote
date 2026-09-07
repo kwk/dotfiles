@@ -1,0 +1,251 @@
+#!/usr/bin/env bash
+
+# tasknote — link a Taskwarrior task to a markdown note and open it.
+#
+# Notes live in ~/Documents/Notes. The link is a Taskwarrior annotation of the
+# form note://NOTE_ID, where NOTE_ID is the path of the file relative to that
+# directory, without the .md suffix (for example 202401010945 or
+# Tasks/meeting-notes).
+#
+# Usage:
+#   tasknote TASK_ID
+#       If the task already has a note:// annotation, open that note.
+#       Otherwise create ~/Documents/Notes/YYYYMMDDHHmm.md (Obsidian's Unique
+#       note creator format; the next free minute if that name is taken),
+#       start it with a "# <task description>" heading, annotate the task,
+#       and open the note.
+#   tasknote TASK_ID NOTE_FILE
+#       Link the task to an existing markdown file instead of creating one.
+#       NOTE_FILE must already exist, end in .md, and live under
+#       ~/Documents/Notes. If the task is already linked to a different note,
+#       this is an error.
+#   tasknote note://NOTE_ID
+#       Open that note without talking to Taskwarrior. Used by the
+#       tasknote.desktop x-scheme-handler/note so xdg-open note://… works.
+#
+# Opening: in a graphical session, xdg-open is used (the URI first, then the
+# file). Switch VS Code vs vim by changing the default app for Markdown.
+# Without a display, the file is opened with $VISUAL or $EDITOR (or vi).
+# xdg-open is optional; the script does not require a GUI.
+
+set -e
+
+TASK="/usr/bin/task"
+JQ="/usr/bin/jq"
+NOTES="$HOME/Documents/Notes"
+
+usage() {
+    echo "Usage: $(basename "$0") TASK_ID [NOTE_FILE]" >&2
+    echo "       $(basename "$0") note://NOTE_ID" >&2
+    exit 1
+}
+
+have_display() {
+    [[ -n "${DISPLAY:-}${WAYLAND_DISPLAY:-}" ]]
+}
+
+register_note_handler() {
+    command -v xdg-mime >/dev/null 2>&1 || return 0
+    xdg-mime default tasknote.desktop x-scheme-handler/note >/dev/null 2>&1 || true
+}
+
+# Open a note file. Prefer the desktop Markdown handler when a session exists;
+# otherwise use VISUAL/EDITOR so this works on a TTY.
+open_file() {
+    local file="$1"
+    if have_display && command -v xdg-open >/dev/null 2>&1; then
+        if xdg-open "$file" >/dev/null 2>&1; then
+            return 0
+        fi
+    fi
+    local editor="${VISUAL:-${EDITOR:-vi}}"
+    # Intentional splitting so EDITOR="code --wait" still works.
+    $editor "$file"
+}
+
+# Open a note:// URI through xdg-open so the desktop handler owns the scheme.
+# Fall back to the file, then to the editor, and never require a GUI.
+open_uri() {
+    local uri="$1"
+    local file="$2"
+    register_note_handler
+    if have_display && command -v xdg-open >/dev/null 2>&1; then
+        if xdg-open "$uri" >/dev/null 2>&1; then
+            return 0
+        fi
+        if xdg-open "$file" >/dev/null 2>&1; then
+            return 0
+        fi
+    fi
+    local editor="${VISUAL:-${EDITOR:-vi}}"
+    $editor "$file"
+}
+
+# NOTE_ID is a path relative to NOTES without the .md suffix. No absolute
+# paths, empty segments, or ".." so note:// cannot escape the notes dir.
+is_safe_note_id() {
+    local id="$1"
+    local part
+    [[ -n "$id" ]] || return 1
+    [[ "$id" != /* ]] || return 1
+    [[ "$id" != *//* ]] || return 1
+    IFS=/ read -r -a parts <<< "$id"
+    for part in "${parts[@]}"; do
+        if [[ -z "$part" || "$part" == "." || "$part" == ".." ]]; then
+            return 1
+        fi
+    done
+    return 0
+}
+
+parse_note_id() {
+    local arg="$1"
+    local id=""
+    if [[ "$arg" =~ ^note://(.+)$ ]]; then
+        id="${BASH_REMATCH[1]}"
+    elif [[ "$arg" =~ ^note:(.+)$ ]]; then
+        id="${BASH_REMATCH[1]}"
+    else
+        return 1
+    fi
+    # Legacy short-UUID files are stored in lowercase.
+    if [[ "$id" =~ ^[0-9a-fA-F]{8}$ ]]; then
+        id="${id,,}"
+    fi
+    is_safe_note_id "$id" || return 1
+    echo "$id"
+}
+
+note_file_for_id() {
+    local id="$1"
+    local file notes_real real
+    is_safe_note_id "$id" || return 1
+    file="$NOTES/$id.md"
+    notes_real=$(realpath "$NOTES")
+    real=$(realpath -e "$file") || return 1
+    if [[ "$real" != "$notes_real"/* ]]; then
+        return 1
+    fi
+    echo "$real"
+}
+
+# Resolve an existing markdown file to a NOTE_ID under NOTES.
+note_id_from_path() {
+    local input="$1"
+    local abs notes_real rel
+    if [[ ! -e "$input" ]]; then
+        echo "Error: '$input' does not exist." >&2
+        exit 1
+    fi
+    abs=$(realpath -e "$input")
+    if [[ ! -f "$abs" ]]; then
+        echo "Error: '$input' is not a file." >&2
+        exit 1
+    fi
+    if [[ "$abs" != *.md ]]; then
+        echo "Error: '$input' is not a markdown file." >&2
+        exit 1
+    fi
+    notes_real=$(realpath "$NOTES")
+    if [[ "$abs" != "$notes_real"/* ]]; then
+        echo "Error: '$input' is not inside '$NOTES'." >&2
+        exit 1
+    fi
+    rel="${abs#"$notes_real"/}"
+    rel="${rel%.md}"
+    if ! is_safe_note_id "$rel"; then
+        echo "Error: '$input' is not a valid note path." >&2
+        exit 1
+    fi
+    echo "$rel"
+}
+
+# Local timestamp, same width as Obsidian's default unique-note name.
+next_note_id() {
+    local id
+    id=$(date +%Y%m%d%H%M)
+    while [[ -f "$NOTES/$id.md" ]]; do
+        id=$(date -d "${id:0:8} ${id:8:2}:${id:10:2} +1 minute" +%Y%m%d%H%M)
+    done
+    echo "$id"
+}
+
+if [[ ! -d "$NOTES" ]]; then
+    echo "Error: The directory '$NOTES' doesn't exist. You need to create it first." >&2
+    exit 1
+fi
+
+NOTE_ID=""
+if NOTE_ID=$(parse_note_id "${1:-}"); then
+    if [[ -n "${2:-}" ]]; then
+        usage
+    fi
+    NOTE_FILE=$(note_file_for_id "$NOTE_ID") || {
+        echo "Error: note '$NOTES/$NOTE_ID.md' not found." >&2
+        exit 1
+    }
+    open_file "$NOTE_FILE"
+    exit 0
+fi
+
+if [[ ! "${1:-}" =~ ^[0-9a-f]+$ || -n "${3:-}" ]]; then
+    usage
+fi
+TASK_ID=$1
+EXISTING_PATH="${2:-}"
+
+for cmd in "$TASK" "$JQ" "realpath"; do
+    if ! command -v "$cmd" &> /dev/null; then
+        echo "Error: '$cmd' is required but not found in PATH." >&2
+        exit 1
+    fi
+done
+
+# Retrieve the UUID of the task. Check if empty since `task _get` doesn't consistently return != 0 on failure.
+TASK_UUID=$($TASK _get "$TASK_ID.uuid" 2>/dev/null)
+if [[ -z "$TASK_UUID" ]]; then
+    echo "Error: task $TASK_ID not found." >&2
+    exit 1
+fi
+
+# Check if the task already has a note:// annotation. Existing UUID links stay as-is.
+annotation=$($TASK "$TASK_UUID" export 2>/dev/null | "$JQ" -r '.[0].annotations[]?.description | select(contains("note://"))' | head -n 1)
+
+if [[ -n "$EXISTING_PATH" ]]; then
+    NOTE_ID=$(note_id_from_path "$EXISTING_PATH")
+    if LINKED_ID=$(parse_note_id "$annotation"); then
+        if [[ "$LINKED_ID" != "$NOTE_ID" ]]; then
+            echo "Error: task $TASK_ID is already linked via $annotation" >&2
+            exit 1
+        fi
+    fi
+elif NOTE_ID=$(parse_note_id "$annotation"); then
+    :
+else
+    NOTE_ID=$(next_note_id)
+fi
+
+NOTE_FILE="$NOTES/$NOTE_ID.md"
+NOTE_URI="note://$NOTE_ID"
+
+# Check if the note is already there. If not, initialize it with the task description.
+if [[ ! -f "$NOTE_FILE" ]]; then
+    if [[ -n "$EXISTING_PATH" ]]; then
+        echo "Error: note '$NOTE_FILE' not found." >&2
+        exit 1
+    fi
+    TASK_DESC=$($TASK _get "$TASK_UUID.description" 2>/dev/null)
+    TASK_DESC=${TASK_DESC:-"Task $TASK_ID"}
+    printf '%s\n' "# $TASK_DESC" > "$NOTE_FILE"
+    echo "Created new note: $NOTE_FILE"
+fi
+
+# Link it to the note if it isn't linked yet
+if [[ -z "$annotation" ]]; then
+    $TASK "$TASK_UUID" annotate "$NOTE_URI" > /dev/null
+    echo "Task $TASK_ID linked to $NOTE_URI"
+else
+    echo "Task $TASK_ID is already linked via $annotation"
+fi
+
+open_uri "$NOTE_URI" "$NOTE_FILE"
