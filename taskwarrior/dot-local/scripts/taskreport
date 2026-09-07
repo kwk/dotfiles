@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+
+# taskreport — list tasks worked in an ISO 8601 week (YYYY-Www).
+#
+# Default is last week, which is the usual case: the report is sent after the
+# week ends. Pass "this" when sending it during the same week.
+#
+# Usage:
+#   taskreport              last ISO week
+#   taskreport last         last ISO week
+#   taskreport this         current ISO week
+#   taskreport YYYY-Www     that ISO week
+#   taskreport [week] FILTER...
+#       Extra Taskwarrior arguments are passed through, for example:
+#       taskreport this project:Home
+
+set -euo pipefail
+
+usage() {
+    echo "Usage: $(basename "$0") [this|last|YYYY-Www] [FILTER...]" >&2
+    exit 1
+}
+
+week_last() {
+    date -d '7 days ago' +%G-W%V
+}
+
+week_this() {
+    date +%G-W%V
+}
+
+week=""
+if [[ ${1-} == -h || ${1-} == --help ]]; then
+    usage
+fi
+
+case "${1-}" in
+    this)
+        week=$(week_this)
+        shift
+        ;;
+    last)
+        week=$(week_last)
+        shift
+        ;;
+    [0-9][0-9][0-9][0-9]-W[0-9][0-9])
+        week=$1
+        shift
+        ;;
+    *)
+        week=$(week_last)
+        ;;
+esac
+
+exec task worked weeks.contains:"$week" "$@"
