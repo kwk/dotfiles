@@ -26,3 +26,5 @@
     abbrevCommit=false
 [diff]
 	wsErrorHighlight = old,new,context
+[worktree]
+	useRelativePaths = true
