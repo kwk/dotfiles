@@ -26,14 +26,27 @@ fi
 
 unset rc
 
-# Show minimal prompt with only working directory 
-# and rely on tmux status bar for more like hostname
-PS1='\n\w > '
+PS1='\n \u 󰲝 \h   \w > '
 
 if [[ -e ~/.extra-bashrc ]]; then
 	source ~/.extra-bashrc
 fi
 
+if [[ -e ~/.local/scripts/git-prompt.sh ]]; then
+	# Show a '*' if repo is in dirty state
+	GIT_PS1_SHOWDIRTYSTATE=1
+	# Show a '$' if something is stashed
+	GIT_PS1_SHOWSTASHSTATE=
+	# Show a '%' if there are untracked files
+	GIT_PS1_SHOWUNTRACKEDFILES=
+        # Separator for the  
+	#GIT_PS1_STATESEPARATOR=" 󰊢 "
+	GIT_PS1_STATESEPARATOR=
+        # Use colors to indicated git status
+        #GIT_PS1_SHOWCOLORHINTS=1
+	source ~/.local/scripts/git-prompt.sh
+        PS1='\n \u 󰲝 \h   \w $(__git_ps1 " %s") > '
+fi
 
 function find_failed_llvm_tests_in_log() {
   grep -Pzo "(?s)\*{20} TEST .*?\n--\n.*?\n--\n" $1
