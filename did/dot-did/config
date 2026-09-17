@@ -2,16 +2,6 @@
 email = Konrad Kleine <kkleine@redhat.com>
 width = 200
 
-## [jira]
-## type = jira
-## #url = https://issues.redhat.com/
-## url = https://redhat.atlassian.net/
-## login =kkleine 
-## auth_type = token
-## token_file = ~/.did/token-jira
-## project = LLVM
-## worklog_enable = on
-
 [jira]
 type = jira
 url = https://redhat.atlassian.net/
@@ -40,11 +30,11 @@ token_file = ~/.did/token-gitlab
 login = kkleine1
 ssl_verify = true
 
-[pagure]
-type = pagure
-url = https://pagure.io/api/0/
+[forgejo]
+type = forgejo
+url = https://forge.fedoraproject.org
 login = kkleine
-token_file = ~/.did/token-pagure
+token_file = ~/.did/token-forgejo
 
 [srcfedoraproject]
 type = pagure
