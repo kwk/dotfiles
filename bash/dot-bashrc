@@ -26,7 +26,8 @@ fi
 
 unset rc
 
-PS1='\n \u 󰲝 \h   \w > '
+#PS1='\n \u 󰲝 \h   \w > '
+PS1='\n\[\e[2m\] \u 󰲝 \h\[\e[0m\]\[\e[1m\]   \w\[\e[0m\] > '
 
 if [[ -e ~/.extra-bashrc ]]; then
 	source ~/.extra-bashrc
@@ -40,12 +41,12 @@ if [[ -e ~/.local/scripts/git-prompt.sh ]]; then
 	# Show a '%' if there are untracked files
 	GIT_PS1_SHOWUNTRACKEDFILES=
         # Separator for the  
-	#GIT_PS1_STATESEPARATOR=" 󰊢 "
+	#GIT_PS1_STATESEPARATOR="  "
 	GIT_PS1_STATESEPARATOR=
         # Use colors to indicated git status
-        #GIT_PS1_SHOWCOLORHINTS=1
+        GIT_PS1_SHOWCOLORHINTS=1
 	source ~/.local/scripts/git-prompt.sh
-        PS1='\n \u 󰲝 \h   \w $(__git_ps1 " %s") > '
+        PS1='\n\[\e[2m\] \u 󰲝 \h\[\e[0m\]\[\e[1m\]   \w\[\e[0m\] \[\e[2m\]$(__git_ps1 " %s")\[\e[0m\] > '
 fi
 
 function find_failed_llvm_tests_in_log() {
