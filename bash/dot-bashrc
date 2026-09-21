@@ -82,3 +82,6 @@ if [ -f '~/bin/google-cloud-sdk/path.bash.inc' ]; then . '~/bin/google-cloud-sdk
 if [ -f '~/bin/google-cloud-sdk/completion.bash.inc' ]; then . '~/bin/google-cloud-sdk/completion.bash.inc'; fi
 
 [ -f "~/.config/claude-code-vertex/env.sh" ] && . "~/.config/claude-code-vertex/env.sh"
+
+# cd to a possibly nonexisting directory, creating if necessary
+ccd() { mkdir -p "$@" && cd "$@"; }
