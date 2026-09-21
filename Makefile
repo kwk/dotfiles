@@ -2,7 +2,7 @@
 os=$(shell cat /etc/os-release | grep ID=fedora -q && echo fedora || echo unknown)
 
 # Packages that need to be installed on a Fedora system
-fedora_packages=git gdb stow vim-enhanced tmux bat tree python3-pyfzf gnupg2 yubikey-manager python3-pip yubikey-personalization-gui fedpkg pipx krb5-config gcc python3-devel centpkg rhpkg python3-psycopg2 inotify-tools fedora-packager-kerberos task powerline-fonts powerline tmux-powerline vim-powerline
+fedora_packages=git gdb stow vim-enhanced tmux bat tree python3-pyfzf gnupg2 yubikey-manager python3-pip yubikey-personalization-gui fedpkg pipx krb5-config gcc python3-devel centpkg rhpkg python3-psycopg2 inotify-tools fedora-packager-kerberos task powerline-fonts powerline tmux-powerline vim-powerline lazygit ripgrep fd-find
 
 # Increase verbosity, from 0 to 5
 STOW_VERBOSE_LEVEL := 2
@@ -48,6 +48,7 @@ install-dotfiles:
 install-yum-repos:
 	$(START)
 	sudo stow --target=/etc/yum.repos.d/ --verbose=$(STOW_VERBOSE_LEVEL) --dotfiles yum/
+	sudo dnf copr enable -y dejan/lazygit
 	$(END)
 	
 .PHONY: install-python-packages
