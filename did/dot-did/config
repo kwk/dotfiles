@@ -14,7 +14,7 @@ token_file = ~/.did/token-jira
 type = github
 url = https://api.github.com/
 token_file = ~/.did/token-github
-login = kwk 
+login = kwk
 
 # [gitlab-internal]
 # type = gitlab
@@ -22,7 +22,7 @@ login = kwk
 # token_file = ~/.did/token-gitlab-internal
 # login = kkleine
 # ssl_verify = true
-# 
+#
 [gitlab]
 type = gitlab
 url = https://gitlab.com/

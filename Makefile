@@ -50,7 +50,7 @@ install-yum-repos:
 	sudo stow --target=/etc/yum.repos.d/ --verbose=$(STOW_VERBOSE_LEVEL) --dotfiles yum/
 	sudo dnf copr enable -y dejan/lazygit
 	$(END)
-	
+
 .PHONY: install-python-packages
 install-python-packages:
 	$(START)
@@ -71,4 +71,3 @@ install-fedora-packages: install-yum-repos
 		&& exit 333 \
 		|| true
 	$(END)
-

@@ -72,7 +72,7 @@ Host pkgs-stage.devel.redhat.com
 #   HostName            shell-el7.hosts.prod.upshift.rdu2.redhat.com
 #   User                kkleine
 #   Port                22
-# 
+#
 # Host llvm-standalone-builder
 #   HostName            ec2-54-197-7-45.compute-1.amazonaws.com
 #   User                ec2-user

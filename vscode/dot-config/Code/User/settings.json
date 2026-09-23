@@ -36,7 +36,7 @@
 
 
     // Shrink space next to editor by removing line numbers and the
-    // ability to set breakpoints as well as removing the folding. 
+    // ability to set breakpoints as well as removing the folding.
     "editor.lineNumbers": "on",
     "editor.fontFamily": "Mona",
     "editor.glyphMargin": true,
@@ -66,7 +66,7 @@
             "disableFolding": false //Turn off #region folding for this language
         }
     },
-    
+
     "breadcrumbs.enabled": true,
     "vsicons.dontShowNewVersionMessage": true,
     "zenMode.silentNotifications": true,
@@ -74,15 +74,15 @@
     "gitlens.defaultTimeFormat": null,
     "gitlens.defaultDateShortFormat": null,
     "editor.renderWhitespace": "selection",
-    
-    
+
+
     //--------------------------------------------------------------------------
     //              Formatting
     //--------------------------------------------------------------------------
     "clang-format.language.cpp.style": "LLVM",
     "clang-format.language.c.style": "LLVM",
     "editor.defaultFormatter": "xaver.clang-format",
-  
+
     "zenMode.hideStatusBar": false,
     "editor.guides.indentation": true,
     "python.diagnostics.sourceMapsEnabled": true,
@@ -189,11 +189,11 @@
     },
     "cmake.configureSettings": {
         // Manually added:
-        
+
         "LLVM_ENABLE_IDE": "ON",
 
         "CMAKE_CXX_COMPILER": "clang++",
-        "CMAKE_CXX_COMPILER_LAUNCHER": "ccache",    
+        "CMAKE_CXX_COMPILER_LAUNCHER": "ccache",
         "CMAKE_C_COMPILER": "clang",
         "CMAKE_C_COMPILER_LAUNCHER": "ccache",
         "LLVM_BUILD_SHARED_LIBS": "ON",
@@ -205,7 +205,7 @@
         "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
 
         // "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
-        
+
         // // Taken from an RPM build:
 
         // "CMAKE_C_FLAGS_RELEASE":"-DNDEBUG",

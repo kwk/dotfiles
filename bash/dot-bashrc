@@ -40,7 +40,7 @@ if [[ -e ~/.local/scripts/git-prompt.sh ]]; then
 	GIT_PS1_SHOWSTASHSTATE=
 	# Show a '%' if there are untracked files
 	GIT_PS1_SHOWUNTRACKEDFILES=
-        # Separator for the  
+        # Separator for the
 	#GIT_PS1_STATESEPARATOR="  "
 	GIT_PS1_STATESEPARATOR=
         # Use colors to indicated git status
@@ -54,7 +54,7 @@ function find_failed_llvm_tests_in_log() {
 }
 
 function find_failed_llvm_tests_in_log_as_markdown() {
-  find_failed_llvm_tests_in_log $1 | sed -E 's/(\*{20} TEST)/````````\n````````\n\1/' | sed -zE 's/\0/\n/' | tr '\0' '\n' 
+  find_failed_llvm_tests_in_log $1 | sed -E 's/(\*{20} TEST)/````````\n````````\n\1/' | sed -zE 's/\0/\n/' | tr '\0' '\n'
   echo -e '\n````````\n'
 }
 

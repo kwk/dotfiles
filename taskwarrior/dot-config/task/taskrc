@@ -27,4 +27,3 @@ report.worked.sort=weeks+,id+
 include /usr/share/task/solarized-dark-256.theme
 #include /usr/share/task/solarized-light-256.theme
 #include /usr/share/task/no-color.theme
-
