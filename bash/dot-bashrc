@@ -85,3 +85,5 @@ if [ -f '~/bin/google-cloud-sdk/completion.bash.inc' ]; then . '~/bin/google-clo
 
 # cd to a possibly nonexisting directory, creating if necessary
 ccd() { mkdir -p "$@" && cd "$@"; }
+
+mymosh() { $(which mosh) --port=60001:60006 --family=inet "$@"; }
