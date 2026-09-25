@@ -16,27 +16,27 @@ Include ~/.ssh/fedora-rhel-config
 # GitHub and GitLab
 Host github.com gitlab.com
   User                  git
-  # First option:
   IdentitiesOnly        yes
   IdentityFile          ~/.ssh/id_gpg.pub
-  # Second option:
-  # IdentitiesOnly      no
-  # IdentityAgent       /run/user/1000/gnupg/S.gpg-agent.ssh
+  IdentityAgent         ${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh
 
 Host pkgs.fedoraproject.org
   User                  kkleine
   IdentitiesOnly        yes
   IdentityFile          ~/.ssh/id_gpg.pub
+  IdentityAgent         ${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh
 
 Host gitlab.cee.redhat.com
   User                  git
   IdentitiesOnly        yes
   IdentityFile          ~/.ssh/id_gpg.pub
+  IdentityAgent         ${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh
 
-Host gitlab.freedesktop.org ssh.gitlab.freedesktop.org
+Host ssh.gitlab.freedesktop.org
   User                  git
   IdentitiesOnly        yes
   IdentityFile          ~/.ssh/id_gpg.pub
+  IdentityAgent         ${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh
 
 # ITUP.Scale RDU3 host
 Host kkleine-llvm
