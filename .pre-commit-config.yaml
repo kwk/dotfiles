@@ -40,8 +40,3 @@ repos:
     rev: v2.5.2
     hooks:
       - id: stylua # or stylua-system / stylua-github
-
-  - repo: https://github.com/checkmake/checkmake.git
-    rev: v0.3.2
-    hooks:
-    -   id: checkmake

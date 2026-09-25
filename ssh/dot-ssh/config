@@ -33,6 +33,11 @@ Host gitlab.cee.redhat.com
   IdentitiesOnly        yes
   IdentityFile          ~/.ssh/id_gpg.pub
 
+Host gitlab.freedesktop.org ssh.gitlab.freedesktop.org
+  User                  git
+  IdentitiesOnly        yes
+  IdentityFile          ~/.ssh/id_gpg.pub
+
 # ITUP.Scale RDU3 host
 Host kkleine-llvm
   HostName              10.5.226.75
