@@ -66,26 +66,24 @@ alias git_last_commit_as_branch='git log --pretty=format:'%s' -n1 | tr " " "_"'
 
 export PATH=$PATH:$HOME/.npm-global/bin
 
-# Yubikey config
-[ -f "~/.config/gnupg-yubikey/env.sh" ] && . "~/.config/gnupg-yubikey/env.sh"
-
-# Bitwarden Session key
-[ -f "~/.bw.sh" ] && . "~/.bw.sh"
-
-# Testing farm config
-[ -f "~/.config/testing-farm/env.sh" ] && . "~/.config/testing-farm/env.sh"
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '~/bin/google-cloud-sdk/path.bash.inc' ]; then . '~/bin/google-cloud-sdk/path.bash.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '~/bin/google-cloud-sdk/completion.bash.inc' ]; then . '~/bin/google-cloud-sdk/completion.bash.inc'; fi
-
-[ -f "~/.config/claude-code-vertex/env.sh" ] && . "~/.config/claude-code-vertex/env.sh"
-
-[ -f "~/.config/git/env.sh" ] && . "~/.config/git/env.sh"
-
-# cd to a possibly nonexisting directory, creating if necessary
+# cd to a possibly nonexisting directory, creating if necessar
 ccd() { mkdir -p "$@" && cd "$@"; }
 
 mymosh() { $(which mosh) --port=60001:60006 --family=inet "$@"; }
+
+
+# Load environment files for different purposes if they exist.
+env_files=()
+env_files+=("$HOME/.config/gnupg-yubikey/env.sh") # Yubikey config
+env_files+=("$HOME/.bw.sh") # Bitwarden Session key
+env_files+=("$HOME/.config/testing-farm/env.sh") # Testing farm config
+env_files+=("$HOME/bin/google-cloud-sdk/path.bash.inc") # The next line updates PATH for the Google Cloud SDK.
+env_files+=("$HOME/bin/google-cloud-sdk/completion.bash.inc") # # The next line enables shell command completion for gcloud.
+env_files+=("$HOME/.config/claude-code-vertex/env.sh")
+env_files+=("$HOME/.config/git/env.sh")
+for i in "${env_files[@]}"; do
+	if [ -f "$i" ]; then
+		. "$i"
+	fi
+done
+unset env_files
