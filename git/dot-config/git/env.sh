@@ -4,9 +4,7 @@
 # Store the setting in the global ~/.gitconfig file which isn't tracked
 # in this repository, thus not causing any change when the command runs.
 
-on-local-machine.sh
-
-if [ $? -eq 0 ]; then
+if on-local-machine.sh; then
     git config --file ~/.gitconfig commit.gpgsign true
 else
     git config --file ~/.gitconfig commit.gpgsign false
