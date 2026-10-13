@@ -12,7 +12,7 @@ END = @echo -e "<< END $@\n"
 
 # If at some point I need to filter out folders, I can do something like:
 # STOW_PACKAGES := $(filter-out folder_A/ folder_B/,$(wildcard */))
-STOW_PACKAGES := $(filter-out user-installed-rpms.txt,$(wildcard */))
+STOW_PACKAGES := $(filter-out user-installed-rpms.txt git/dot-gitconfig,$(wildcard */))
 
 .DEFAULT_GOAL: all
 

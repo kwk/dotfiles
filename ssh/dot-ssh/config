@@ -77,7 +77,7 @@ Match all
 
 # When using SSH from the local laptop (with a Yubikey attachted),
 # use the GPG key stored on that one instead.
-Match host="*" exec "~/.ssh/on-local-machine.sh"
+Match host="*" exec "on-local-machine.sh"
   IdentitiesOnly        yes
   IdentityFile          ~/.ssh/id_gpg.pub
   IdentityAgent         ${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh

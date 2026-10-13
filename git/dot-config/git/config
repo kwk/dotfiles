@@ -7,8 +7,6 @@
 [user]
 	email = kkleine@redhat.com
 	name = Konrad Kleine
-	signingKey = 0F3C00A36DEE6A91AB6CF9F112468E659A4E07CC
-
 
 [credential "https://github.com"]
 	helper =
@@ -29,7 +27,3 @@
 	wsErrorHighlight = old,new,context
 [worktree]
 	useRelativePaths = true
-[gpg]
-	program = /usr/bin/gpg
-[commit]
-	gpgsign = true
