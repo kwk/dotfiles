@@ -60,7 +60,7 @@ function find_failed_llvm_tests_in_log_as_markdown() {
 
 
 PATH="$PATH:~/scripts:~/.cargo/bin:~/go/bin:"
-export EDITOR=vim
+export EDITOR=nvim
 
 alias git_last_commit_as_branch='git log --pretty=format:'%s' -n1 | tr " " "_"'
 
