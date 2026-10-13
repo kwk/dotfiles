@@ -30,5 +30,3 @@
 	useRelativePaths = true
 [gpg]
 	program = /usr/bin/gpg
-[commit]
-	gpgsign = true
