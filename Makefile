@@ -12,14 +12,14 @@ END = @echo -e "<< END $@\n"
 
 # If at some point I need to filter out folders, I can do something like:
 # STOW_PACKAGES := $(filter-out folder_A/ folder_B/,$(wildcard */))
-STOW_PACKAGES := $(filter-out user-installed-rpms.txt git/dot-gitconfig,$(wildcard */))
+STOW_PACKAGES := $(filter-out user-installed-rpms.txt,$(wildcard */))
 
 .DEFAULT_GOAL: all
 
 
 .PHONY: all
 all: install-fedora
-	@echo -e "\nIMPORTANT: Now reboot for Yubiky and GPG to work properly!!! Seriously, all else is no fun!\n"
+	@echo -e "\nIMPORTANT: Now reboot for Yubikey and GPG to work properly!!! Seriously, all else is no fun!\n"
 
 .PHONY: show-packages
 show-packages:
